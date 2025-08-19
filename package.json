@@ -1,0 +1,12 @@
+{
+  "name": "pix-llm",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:db": "bun --watch ./packages/db-server/index.ts",
+    "dev:preview": "cd ./packages/preview-client && bun dev"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
