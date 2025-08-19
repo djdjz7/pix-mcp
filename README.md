@@ -30,7 +30,8 @@ A MCP Server that provides a pixel canvas.
      }
    }
    ```
-5. Live preview will be on http://localhost:5173 by default, have fun!
+5. Live preview will be on http://localhost:5173 by default, you can also download
+the image on http://localhost:3000/, have fun!
 
 ## Q&A
 

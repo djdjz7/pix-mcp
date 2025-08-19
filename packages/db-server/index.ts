@@ -1,6 +1,6 @@
 import { CanvasDb } from "./canvasDb";
 
-export const FIELD_SIZE = 32;
+export const FIELD_SIZE = 64;
 
 const previewClients: Bun.ServerWebSocket<unknown>[] = [];
 
@@ -27,10 +27,14 @@ Bun.serve({
       return new Response("OK");
     },
     "/field-size": () => {
-      return new Response(FIELD_SIZE.toString())
+      return new Response(FIELD_SIZE.toString());
     },
     "/": () => {
-      return new Response(canvas.generateImage());
+      return new Response(canvas.generateImage(), {
+        headers: {
+          "Content-Type": "image/png",
+        },
+      });
     },
     "/ws": (req, server) => {
       if (server.upgrade(req)) {
