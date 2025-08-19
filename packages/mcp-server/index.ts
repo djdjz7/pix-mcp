@@ -134,6 +134,78 @@ mcpServer.registerTool(
 );
 
 mcpServer.registerTool(
+  "fill-rect",
+  {
+    title: "Fill Rectangle",
+    description: "Fill a rectangle area with given color",
+    inputSchema: {
+      topLeft: z
+        .tuple([
+          z
+            .number()
+            .min(0)
+            .max(FIELD_SIZE - 1),
+          z
+            .number()
+            .min(0)
+            .max(FIELD_SIZE - 1),
+        ])
+        .describe("Top-left corner of the rectangle (row, column)"),
+      bottomRight: z
+        .tuple([
+          z
+            .number()
+            .min(0)
+            .max(FIELD_SIZE - 1),
+          z
+            .number()
+            .min(0)
+            .max(FIELD_SIZE - 1),
+        ])
+        .describe("Bottom-right corner of the rectangle (row, column)"),
+      color: z
+        .string()
+        .refine((x) => {
+          if (/^#[0-9A-F]{6}$/i.test(x)) return true;
+          throw new Error("color field must be hex color starting with #");
+        })
+        .describe(
+          "The color to fill the rectangle with, in hex format (e.g. #FF0000 for red)"
+        ),
+    },
+  },
+  ({ topLeft, bottomRight, color }) => {
+    if (topLeft[0] > bottomRight[0] || topLeft[1] > bottomRight[1]) {
+      throw new Error("Invalid rectangle coordinates");
+    }
+    const pixels = [];
+    for (let y = topLeft[0]; y <= bottomRight[0]; y++) {
+      for (let x = topLeft[1]; x <= bottomRight[1]; x++) {
+        pixels.push([y, x]);
+      }
+    }
+    fetch(`${dbServer}/update`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        location: pixels,
+        color,
+      }),
+    });
+    return {
+      content: [
+        {
+          type: "text",
+          text: `Filled rectangle from (${topLeft[0]}, ${topLeft[1]}) to (${bottomRight[0]}, ${bottomRight[1]}) with ${color}`,
+        },
+      ],
+    };
+  }
+);
+
+mcpServer.registerTool(
   "get-image",
   {
     title: "Get Image",
