@@ -10,6 +10,7 @@ A MCP Server that provides a pixel canvas.
 ## Prerequisites
 
 - Bun.js
+- Node.js
 
 ## Installation
 
@@ -41,3 +42,34 @@ A: You can change the canvas size by modifying the `FIELD_SIZE` variable in `pac
 
 - MCP Server will not hot reload FIELD_SIZE when the canvas is resized.
   - You need to manually reload it in your chat client.
+
+## Demo
+
+With Cline, prompt:
+
+> create a pixel art with the tool you have, as complex as possible, then describe it for me
+
+- deepseek-v3-250324
+  - ![deepseek](./demos/dpsk.png)
+  - > Created a complex 32x32 pixel art featuring:
+    >
+    > 1. Central diamond structure in orange-red with nested smaller diamonds
+    > 2. Four concentric square borders in alternating blue and green
+    > 3. Radiating diagonal lines in purple creating star-like patterns
+    > 4. Symmetrical geometric designs in all four quadrants
+    > 5. Color gradients achieved through strategic pixel placement
+    > 6. Multiple layers of visual complexity with overlapping shapes
+    >    The artwork combines precise symmetry with vibrant color contrasts to create an intricate, eye-catching composition.
+- doubao-seed-1.6-250615
+  - ![doubao](./demos/doubao.png)
+  - > Created a 32x32 pixel art landscape featuring multiple elements:
+    >
+    > - A yellow sun (#FFFF00) in the top-left quadrant with radiating edges
+    > - Light blue sky (#87CEEB) covering the upper portion of the canvas
+    > - Two white clouds (#FFFFFF) floating in the sky
+    > - A green bush/tree (#008000) with darker green details (#006400) in the mid-left area
+    > - A red house (#FF0000) with a blue window (#0000FF) and black door (#000000) in the center
+    > - A gray mountain range (#808080) on the right side
+    > - A brown tree trunk (#8B4513) with white cloud-like foliage in the lower-left area
+    >
+    > The composition balances natural elements (sky, clouds, mountain, tree) with a man-made structure (house), creating a cohesive outdoor scene.

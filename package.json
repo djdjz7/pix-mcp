@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "dev:db": "bun --watch ./packages/db-server/index.ts",
-    "dev:preview": "cd ./packages/preview-client && bunx --bun vite",
+    "dev:preview": "cd ./packages/preview-client && bun dev",
     "dev": "concurrently 'bun dev:db' 'bun dev:preview'"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
 }
